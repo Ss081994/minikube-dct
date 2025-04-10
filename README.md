@@ -82,7 +82,8 @@ _Below is an example of how you can instruct your audience on installing and set
     -subj "/CN=local.dct/O=SelfSigned"
     ```
 
-    
+4. Create the kubernetes secret for Ingress  
+
    ```sh
     kubectl create secret tls ingress-tls \
   --namespace dct-services \
@@ -90,7 +91,7 @@ _Below is an example of how you can instruct your audience on installing and set
   --cert server.crt
  ```
    
-4. Update the /etc/hosts file to update the hostname 
+5. Update the /etc/hosts file to update the hostname 
 
 
 <!-- USAGE EXAMPLES -->
