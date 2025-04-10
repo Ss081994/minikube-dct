@@ -86,9 +86,9 @@ _Below is an example of how you can instruct your audience on installing and set
 
    ```sh
     kubectl create secret tls ingress-tls \
-  --namespace dct-services \
-  --key server.key \
-  --cert server.crt
+    --namespace dct-services \
+    --key server.key \
+    --cert server.crt
  ```
    
 5. Update the /etc/hosts file to update the hostname 
