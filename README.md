@@ -91,7 +91,8 @@ _Below is an example of how you can instruct your audience on installing and set
     --cert server.crt
  ```
    
-5. Update the /etc/hosts file to update the hostname 
+5. Update the /etc/hosts file to update the hostname (optional)
+   
 
 
 <!-- USAGE EXAMPLES -->
