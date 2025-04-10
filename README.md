@@ -75,12 +75,14 @@ _Below is an example of how you can instruct your audience on installing and set
 
 3. Create the TLS certificate 
    ```sh
-   openssl req -x509 -nodes -days 365 \
-  -newkey rsa:2048 \
-  -keyout server.key \
-  -out server.crt \
-  -subj "/CN=local.dct/O=SelfSigned"
+    openssl req -x509 -nodes -days 365 \
+    -newkey rsa:2048 \
+    -keyout server.key \
+    -out server.crt \
+    -subj "/CN=local.dct/O=SelfSigned"
     ```
+
+    
    ```sh
     kubectl create secret tls ingress-tls \
   --namespace dct-services \
