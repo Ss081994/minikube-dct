@@ -36,10 +36,59 @@ _Below is an example of how you can instruct your audience on installing and set
    minikube addons enable ingress
    ```
 4. Deploying DCT on minikube
-    ```sh
+   ```sh
    helm repo add dct-services https://dlpx-helm-dct.s3.amazonaws.com
    ```
+5. Pull the appropriate helm chart to deploy 
+    ```sh
+   helm pull dct-services/delphix-dct --version 2025.1.2
+   ```
+5. Extract the chart
+    ```sh
+   tar -xvf delphix-dct-2025.1.2.tgz
+   ```
 
+
+### Configure the Chart values and deploy
+1. Modify the chart values.yaml to include these two changes  
+    ```sh
+    apiKeyCreate: true
+    Provide the Docker registry credentials (username and password) for pulling images.
+   ```
+2. Deploy the chart
+   ```sh
+    helm install dct-services delphix-dct
+   ```
+
+### Ingress route creation
+
+  Provided you use minikube tunnel to access the dct console we need to expose the proxy pod HTTP port. (port 80)
+
+  1. Edit the values.yaml
+   ```sh
+    useSSL: false
+   ```
+ 2. Run the upgrade
+   ```sh
+   helm upgrade dct-services -f values.yaml delphix-dct
+   ```
+
+3. Create the TLS certificate 
+   ```sh
+   openssl req -x509 -nodes -days 365 \
+  -newkey rsa:2048 \
+  -keyout server.key \
+  -out server.crt \
+  -subj "/CN=local.dct/O=SelfSigned"
+    ```
+   ```sh
+    kubectl create secret tls ingress-tls \
+  --namespace dct-services \
+  --key server.key \
+  --cert server.crt
+ ```
+   
+4. Update the /etc/hosts file to update the hostname 
 
 
 <!-- USAGE EXAMPLES -->
